@@ -1,3 +1,4 @@
+using MagicVilla_API;
 using MagicVilla_API.Datos;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,12 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Agregando Servicios
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 var app = builder.Build();
 
