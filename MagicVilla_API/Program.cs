@@ -1,5 +1,7 @@
 using MagicVilla_API;
 using MagicVilla_API.Datos;
+using MagicVilla_API.Repository;
+using MagicVilla_API.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 });
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
+//Se crea una vez y se destruye
+builder.Services.AddScoped<IVillaRepository, VillaRepository>();
+//Se crea cada solicitud porterior utilizara la misma instancia
+//builder.Services.AddSingleton
+//Transitorios se crean cada vez que se utilizan,sin estado,servicios livianos 
+//builder.Services.AddTransient
+builder.Services.AddScoped<INumeroVillaRepository, NumeroVillaRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

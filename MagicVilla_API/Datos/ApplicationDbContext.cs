@@ -10,6 +10,7 @@ namespace MagicVilla_API.Datos
         }
 
         public DbSet<cVilla> Villas { get; set; }
+        public DbSet<NumeroVilla> NumeroVillas { get; set; }
         //Añadir datos al momento de crear
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
